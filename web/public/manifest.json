@@ -1,0 +1,13 @@
+{
+  "name": "TaskFlow",
+  "short_name": "TaskFlow",
+  "description": "Production-ready project and task manager — offline-first, zero tracking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "any",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any maskable" }
+  ]
+}

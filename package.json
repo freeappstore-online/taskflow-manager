@@ -1,0 +1,14 @@
+{
+  "name": "taskflow-manager",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "engines": { "node": ">=22" },
+  "pnpm": { "onlyBuiltDependencies": ["esbuild"] },
+  "scripts": {
+    "dev": "pnpm --filter @taskflow-manager/web dev",
+    "build": "pnpm --filter @taskflow-manager/web build",
+    "preview": "pnpm --filter @taskflow-manager/web preview",
+    "typecheck": "pnpm --filter @taskflow-manager/web exec tsc -b",
+    "test": "pnpm --filter @taskflow-manager/web test"
+  }
+}

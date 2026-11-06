@@ -120,7 +120,7 @@ function reducer(state: AppStore, action: Action): AppStore {
         tasks: state.tasks.map((t) => {
           if (t.id !== action.id) return t;
           const completedAt =
-            action.status === "done" ? now() : action.status !== "done" && t.status === "done" ? null : t.completedAt;
+            action.status === "done" ? now() : t.status === "done" ? null : t.completedAt;
           return { ...t, status: action.status, completedAt, updatedAt: now() };
         }),
       };

@@ -1,4 +1,5 @@
 import type { Task, ProjectStats } from "../types";
+import { localDate } from "./id";
 
 export function computeProjectStats(tasks: Task[]): ProjectStats {
   const total = tasks.length;
@@ -8,7 +9,7 @@ export function computeProjectStats(tasks: Task[]): ProjectStats {
   const done = tasks.filter((t) => t.status === "done").length;
   const completionRate = total > 0 ? Math.round((done / total) * 100) : 0;
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
   const overdue = tasks.filter(
     (t) => t.dueDate && t.dueDate < today && t.status !== "done"
   ).length;
@@ -22,9 +23,9 @@ export function getWeeklyCompletions(tasks: Task[]): { day: string; count: numbe
     const d = new Date();
     d.setDate(d.getDate() - i);
     const label = d.toLocaleDateString("en", { weekday: "short" });
-    const dateStr = d.toISOString().slice(0, 10);
+    const dateStr = localDate(d);
     const count = tasks.filter(
-      (t) => t.completedAt && t.completedAt.slice(0, 10) === dateStr
+      (t) => t.completedAt && localDate(new Date(t.completedAt)) === dateStr
     ).length;
     days.push({ day: label, count });
   }

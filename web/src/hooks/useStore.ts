@@ -15,7 +15,7 @@ import type {
 } from "../types";
 import { loadStore, saveStore } from "../lib/storage";
 import { buildSeedStore } from "../lib/seed";
-import { generateId, now } from "../lib/id";
+import { generateId, localDate, now } from "../lib/id";
 
 // ─── Action Definitions ───────────────────────────────────────────────────────
 
@@ -254,15 +254,15 @@ export function selectProjectTasks(tasks: Task[], projectId: string): Task[] {
 }
 
 export function selectOverdueTasks(tasks: Task[]): Task[] {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
   return tasks.filter((t) => t.dueDate && t.dueDate < today && t.status !== "done");
 }
 
 export function selectUpcomingTasks(tasks: Task[], days = 7): Task[] {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
   const limit = new Date();
   limit.setDate(limit.getDate() + days);
-  const limitStr = limit.toISOString().slice(0, 10);
+  const limitStr = localDate(limit);
   return tasks.filter(
     (t) => t.dueDate && t.dueDate >= today && t.dueDate <= limitStr && t.status !== "done"
   );

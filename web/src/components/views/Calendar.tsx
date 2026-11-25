@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import type { AppStore, Task } from "../../types";
 import type { StoreActions } from "../../hooks/useStore";
 import { PriorityBadge } from "../ui/Badge";
+import { localDate } from "../../lib/id";
 
 interface Props {
   state: AppStore;
@@ -44,7 +45,7 @@ export function Calendar({ state, actions }: Props) {
 
   const daysInMonth = getDaysInMonth(viewYear, viewMonth);
   const firstDay = getFirstDayOfMonth(viewYear, viewMonth);
-  const todayStr = today.toISOString().slice(0, 10);
+  const todayStr = localDate(today);
 
   function prevMonth() {
     if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }

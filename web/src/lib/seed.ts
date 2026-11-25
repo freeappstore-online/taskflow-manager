@@ -1,5 +1,5 @@
 import type { AppStore, Project, Task, Tag } from "../types";
-import { generateId } from "./id";
+import { generateId, localDate } from "./id";
 
 function daysAgo(n: number): string {
   const d = new Date();
@@ -10,7 +10,7 @@ function daysAgo(n: number): string {
 function daysFromNow(n: number): string {
   const d = new Date();
   d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0, 10);
+  return localDate(d);
 }
 
 export function buildSeedStore(): AppStore {

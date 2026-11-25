@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import type { AppStore, Task, TaskStatus, Priority } from "../../types";
 import type { StoreActions } from "../../hooks/useStore";
 import { filterTasks } from "../../hooks/useStore";
+import { localDate } from "../../lib/id";
 import { Modal, ConfirmDialog } from "../ui/Modal";
 import { Field, Input, Textarea, Select } from "../ui/FormField";
 import { PriorityBadge, StatusBadge } from "../ui/Badge";
@@ -213,7 +214,7 @@ function KanbanColumn({
   onComplete: (id: string) => void;
   onReopen: (id: string) => void;
 }) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
 
   const COLUMN_COLORS: Record<TaskStatus, string> = {
     todo: "#6b7280",
@@ -615,7 +616,7 @@ function ListView({
   onComplete: (id: string) => void;
   onReopen: (id: string) => void;
 }) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDate();
 
   return (
     <div className="flex-1 overflow-y-auto px-6 md:px-8 py-4 space-y-2">
